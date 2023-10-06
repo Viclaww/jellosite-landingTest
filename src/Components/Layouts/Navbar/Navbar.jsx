@@ -29,7 +29,7 @@ const Navbar = () => {
           <li>Pricing</li>
           <li>Resources</li>
         </ul>
-        <Link to="auth-signup" className="link">
+        <Link to="/auth-signup" className="link">
           <button>Try for Free</button>
         </Link>
       </div>
