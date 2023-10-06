@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   function handleToggle() {
     setToggle(!toggle);
@@ -18,12 +18,12 @@ const Navbar = () => {
         <img src={Logo} alt={Logo} />
       </Link>
       <FontAwesomeIcon
-        icon={toggle ? faBars : faTimes}
+        icon={toggle ? faTimes : faBars}
         onClick={handleToggle}
         cursor="pointer"
         className="nav-toggle"
       />
-      <div className={toggle ? "null" : "nav-items"}>
+      <div className={toggle ? "nav-items" : "null"}>
         <ul>
           <li>Solutions</li>
           <li>Pricing</li>
