@@ -1,6 +1,5 @@
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import bgc from "../../../../assets/Images/Shadow.svg";
 import google from "../../../../assets/Images/google.svg";
 import React from "react";
 import "../Login/Login.scss";
@@ -10,7 +9,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="auth-left-login">
-        <h1>Createyour website in a few click</h1>
+        <h1>Create your website in a few click</h1>
         <ul>
           <li>
             <FontAwesomeIcon icon={faCheckCircle} color="#7F56D9" />
@@ -22,13 +21,14 @@ const Login = () => {
           </li>
         </ul>
       </div>
-      <div className="auth-right-con">
+      <div className="auth-right-login">
+        {/* <img src={bgc} alt={bgc} className="bgc" /> */}
         <div className="login-card">
-          <h2>Sign in to HelloSite</h2>
+          <h2>Sign In to HelloSite</h2>
           <form action="">
             <div className="input">
-              <input type="email" />
-              <input type="password" />
+              <input type="email" placeholder="Email Address" />
+              <input type="password" placeholder="Password" />
             </div>
             <div className="rem-pass">
               <div className="rem">
@@ -45,12 +45,11 @@ const Login = () => {
           </button>
           <span>
             Don't have an account?{" "}
-            <Link to="/signup" style={{ color: "#7F56D9" }}>
+            <Link to="/auth-signup" style={{ color: "#7F56D9" }}>
               Sign Up
             </Link>
           </span>
         </div>
-        <img src={bgc} alt={bgc} className="bgc" />
       </div>
     </div>
   );

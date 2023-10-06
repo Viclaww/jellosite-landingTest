@@ -6,6 +6,7 @@ import Navbar from "./Components/Layouts/Navbar/Navbar";
 import Footer from "./Components/Layouts/Footer/Footer";
 import "./reusableComps/design.scss";
 import "./reusableComps/font.scss";
+import SignUp from "./Components/Pages/Auth-Pages/SignUp/SignUp";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route index element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/auth-login" element={<Login />} />
+        <Route path="/auth-signup" element={<SignUp />} />
       </Routes>
       {/* <Footer /> */}
     </div>
