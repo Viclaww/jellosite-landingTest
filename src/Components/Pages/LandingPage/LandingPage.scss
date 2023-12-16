@@ -6,8 +6,12 @@
 
 .landing-page {
   padding: 0px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 250px;
   @media screen and (max-width: 1024px) {
     padding: 0px 15px;
+    gap: 20px;
   }
   .hero {
     @media screen and (max-width: 1024px) {
@@ -44,7 +48,7 @@
         font-weight: 800;
         line-height: 80px;
         @media screen and (max-width: 768px) {
-          font-size: 350%;
+          font-size: 260%;
           line-height: 65px;
         }
       }
@@ -61,29 +65,100 @@
       width: 60%;
       @media screen and (max-width: 1024px) {
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
+        top: 0px;
       }
       .img-floor {
         position: absolute;
         right: 0px;
         top: -200px;
-        width: 700px;
+        width: 650px;
         @media screen and (max-width: 1024px) {
-          position: absolute;
-          width: 100%;
-          overflow: hidden;
-          top: -350px;
+          display: none;
         }
       }
       .hero-prototype {
         position: absolute;
-        right: 30px;
-        top: -50px;
+        right: 0px;
+        top: -80px;
         @media screen and (max-width: 1024px) {
-          left: 0px;
+          position: relative;
+          right: 0px;
           width: 100%;
-          top: -300px;
+          top: 0px;
         }
+      }
+    }
+    .email-input {
+      display: flex;
+      width: 396px;
+      height: 52px;
+      padding: 2px;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 50px;
+      background-color: #3f3f46;
+      overflow: hidden;
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+
+      input {
+        background-color: inherit;
+        width: 100%;
+        color: white;
+      }
+      button {
+        display: flex;
+        width: 151px;
+        height: 48px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 50px;
+        background-color: #7e57c2;
+        color: white;
+      }
+    }
+  }
+  .hero-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .hero-footer-r {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+      width: 45%;
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+      }
+      span {
+        color: #3f3f46;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+      }
+      p {
+        color: var(--bluee, #5729d4);
+        font-weight: 700;
+        text-decoration-line: underline;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
     }
   }
