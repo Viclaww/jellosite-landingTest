@@ -5,6 +5,8 @@ import Login from "./Components/Pages/Auth-Pages/Login/Login";
 import "./reusableComps/design.scss";
 import "./reusableComps/font.scss";
 import SignUp from "./Components/Pages/Auth-Pages/SignUp/SignUp";
+import "./reusableComps/font.scss";
+import "./reusableComps/design.scss";
 
 function App() {
   return (
