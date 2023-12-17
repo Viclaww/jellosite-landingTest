@@ -214,7 +214,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="grow">
-          <h2>Grow your Business here </h2>
+          <h1>Grow your Business here </h1>
           <p>
             Whether you want to sell products down the street or around the
             world, we have all the tools you need.
