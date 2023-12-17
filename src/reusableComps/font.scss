@@ -50,7 +50,7 @@ h2 {
 }
 
 span {
-  @include responsive-font-size(12, 16, 320, 1800);
+  @include responsive-font-size(14, 16, 320, 1800);
 }
 
 // main {
