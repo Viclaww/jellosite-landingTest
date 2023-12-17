@@ -1,16 +1,28 @@
 import "./App.css";
 import LandingPage from "./Components/Pages/LandingPage/LandingPage";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./Components/Pages/Auth-Pages/Login/Login";
 import "./reusableComps/design.scss";
 import "./reusableComps/font.scss";
 import SignUp from "./Components/Pages/Auth-Pages/SignUp/SignUp";
 import "./reusableComps/font.scss";
 import "./reusableComps/design.scss";
+import { useEffect } from "react";
+
+const ScrollToTop = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  return null;
+};
 
 function App() {
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path="/auth-login" element={<Login />} />

@@ -23,7 +23,7 @@
 
 // Applying the mixin to various tags
 p {
-  @include responsive-font-size(14, 20, 320, 2000);
+  @include responsive-font-size(13, 20, 320, 2000);
 }
 
 ul {
@@ -50,7 +50,7 @@ h2 {
 }
 
 span {
-  @include responsive-font-size(14, 16, 320, 1800);
+  @include responsive-font-size(13, 16, 320, 1800);
 }
 
 // main {

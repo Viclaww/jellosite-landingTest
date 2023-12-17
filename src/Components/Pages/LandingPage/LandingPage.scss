@@ -258,7 +258,229 @@
         justify-content: center;
         flex-direction: column;
         gap: 10px;
+        list-style: none;
       }
+      p {
+        color: var(--bluee, #5729d4);
+        font-weight: 700;
+        text-decoration-line: underline;
+      }
+    }
+  }
+  .optimize {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 100px;
+    overflow: hidden;
+    @media screen and (max-width: 1024px) {
+      padding: 50px 20px;
+    }
+    .optimize-con {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 150px;
+      @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+      @media screen and (max-width: 550px) {
+        flex-direction: column;
+        gap: 0px;
+      }
+      .optimize-left {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 25px;
+        .operation-con {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 40px;
+          @media screen and (max-width: 1024px) {
+            gap: 20px;
+          }
+          span {
+            color: #7e57c2;
+            font-weight: 400;
+            font-family: "Mulish", sans-serif;
+          }
+          .operation {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+          }
+        }
+      }
+      .optimize-right {
+        position: relative;
+        width: 100%;
+        @media screen and (max-width: 1024px) {
+          flex-direction: column;
+          gap: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          display: none;
+        }
+        .analytic {
+          height: 500px;
+          width: 450px;
+          right: 0px;
+          top: 0px;
+          @media screen and (max-width: 1024px) {
+            width: 530px;
+          }
+          @media screen and (max-width: 540px) {
+            width: 350px;
+          }
+        }
+        .sales {
+          position: absolute;
+          right: -100px;
+          top: 30px;
+          @media screen and (max-width: 1024px) {
+            // width: 50%;
+            right: 10%;
+            // top: 100px;
+          }
+          @media screen and (max-width: 550px) {
+            width: 50%;
+            right: 0px;
+            top: 100px;
+          }
+        }
+        .dash {
+          position: absolute;
+          right: 400px;
+          top: 200px;
+          @media screen and (max-width: 1024px) {
+            right: 70%;
+          }
+          @media screen and (max-width: 550px) {
+            left: -30px;
+          }
+        }
+        .revenue {
+          position: absolute;
+          right: -100px;
+          top: 150px;
+          @media screen and (max-width: 1024px) {
+            right: 10%;
+            // width: 50%;
+            // top: 200px;
+          }
+          @media screen and (max-width: 550px) {
+            right: 0px;
+            width: 50%;
+            top: 200px;
+          }
+        }
+        .orders {
+          position: absolute;
+          right: -100px;
+          top: 320px;
+          @media screen and (max-width: 1024px) {
+            // right: 0px;
+            // width: 50%;
+            // top: 320px;
+          }
+          @media screen and (max-width: 550px) {
+            right: 0px;
+            width: 50%;
+            top: 320px;
+          }
+        }
+      }
+    }
+  }
+  .testimonals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 60px 0px 60px 100px;
+    gap: 60px;
+    h2 {
+      text-align: center;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 60px 20px;
+    }
+    .testimonies {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: auto;
+      gap: 20px;
+      width: 100%;
+      padding: 0px 50px 0px 0px;
+      .testimony-con {
+        width: 300px;
+        display: flex;
+        flex: 0 0 300px;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        gap: 40px;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #dae3ea;
+        @media screen and (max-width: 500px) {
+          flex: 0 0 280px;
+        }
+        p {
+          color: #3f3f46;
+        }
+        .author {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          color: #3f3f46;
+          .author-details {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            p {
+              font-size: 14px;
+            }
+            span {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .grow {
+    background: linear-gradient(101deg, #5729d4 16.83%, #a85dee 97.92%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 100px;
+    p {
+      text-align: center;
+    }
+    button {
+      background-color: black;
+      color: white;
+      border-radius: 20px;
+      height: 50px;
+      padding: 15px 50px;
     }
   }
 }
