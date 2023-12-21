@@ -136,7 +136,8 @@ const LandingPage = () => {
               </li>
             </ul>
             <p>
-              Learn More <FontAwesomeIcon icon={faArrowRight} />
+              Learn More{" "}
+              <FontAwesomeIcon icon={faArrowRight} className="learn" />
             </p>
           </div>
         </div>
