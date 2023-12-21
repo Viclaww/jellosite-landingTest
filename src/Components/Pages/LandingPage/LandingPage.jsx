@@ -135,9 +135,8 @@ const LandingPage = () => {
                 With our drag and drop store you can bring your ideas to llife.
               </li>
             </ul>
-            <p>
-              Learn More{" "}
-              <FontAwesomeIcon icon={faArrowRight} className="learn" />
+            <p className="learn">
+              Learn More <FontAwesomeIcon icon={faArrowRight} />
             </p>
           </div>
         </div>
