@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 
 const Login = () => {
-  const [emailInput, setEmailInput] = useState("");
-
   return (
     <>
       <Navbar />
