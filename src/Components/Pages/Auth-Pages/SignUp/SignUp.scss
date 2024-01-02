@@ -63,6 +63,14 @@
     @media screen and (max-width: 1000px) {
       width: 100%;
     }
+    .error-msg {
+      font-size: 14px;
+      color: red;
+      background: rgba(223, 113, 113, 0.5);
+      padding: 10px;
+      border-radius: 3px;
+      width: 100%;
+    }
 
     .signup-card {
       width: 100%;

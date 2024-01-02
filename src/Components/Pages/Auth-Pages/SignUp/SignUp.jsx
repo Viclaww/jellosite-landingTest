@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../SignUp/SignUp.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../../../data/auth/authAction";
 import google from "../../../../assets/Images/google.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
+import { faCheckCircle, faWarning } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 
 const SignUp = () => {
+  const [emailInput, setEmailInput] = useState("");
+  const [nameInput, setNameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+
+  const dispatch = useDispatch();
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.auth
+  );
+
+  const data = {
+    username: nameInput,
+    email: emailInput,
+    password1: passwordInput,
+    password2: passwordInput,
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(registerUser(data));
+  };
   return (
     <>
       <Navbar />
@@ -27,14 +50,40 @@ const SignUp = () => {
         <div className="auth-right-signup">
           <div className="signup-card">
             <h2>Sign Up to HelloSite</h2>
-            <form action="">
+            <form onSubmit={handleSubmit}>
+              {error && (
+                <span className="error-msg">
+                  <FontAwesomeIcon icon={faWarning} color="red" />
+                  {"  "}
+                  {error}
+                </span>
+              )}
               <div className="input">
-                <input type="text" placeholder="First Name & Last name" />
-                <input type="email" placeholder="Email Address" />
-                <input type="password" placeholder="Create Password" />
+                <input
+                  value={nameInput}
+                  onChange={(e) => setNameInput(e.target.value)}
+                  type="text"
+                  placeholder="First Name & Last name"
+                />
+                <input
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  type="email"
+                  placeholder="Email Address"
+                />
+                <input
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  type="password"
+                  placeholder="Create Password"
+                />
               </div>
               <div className="rem">
-                <input type="checkbox" />
+                <input
+                  value={agreeToTerms}
+                  onChange={() => setAgreeToTerms(!agreeToTerms)}
+                  type="checkbox"
+                />
                 <span>
                   I agree with the{" "}
                   <Link to="" className="link" style={{ color: "#7F56D9" }}>
@@ -43,7 +92,9 @@ const SignUp = () => {
                   of Hellosite
                 </span>
               </div>
-              <button>Sign Up</button>
+              <button type="submit" onClick={handleSubmit}>
+                Sign Up
+              </button>
             </form>
             <button>
               <img src={google} alt={google} />

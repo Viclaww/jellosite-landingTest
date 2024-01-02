@@ -1,12 +1,14 @@
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import google from "../../../../assets/Images/google.svg";
-import React from "react";
+import React, { useState } from "react";
 import "../Login/Login.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 
 const Login = () => {
+  const [emailInput, setEmailInput] = useState("");
+
   return (
     <>
       <Navbar />

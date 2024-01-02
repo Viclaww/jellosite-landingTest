@@ -8,6 +8,7 @@ import SignUp from "./Components/Pages/Auth-Pages/SignUp/SignUp";
 import "./reusableComps/font.scss";
 import "./reusableComps/design.scss";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <div>
+      <ToastContainer />
       <ScrollToTop />
       <Routes>
         <Route index element={<LandingPage />} />
