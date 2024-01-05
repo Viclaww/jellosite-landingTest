@@ -1,12 +1,33 @@
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faWarning } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import google from "../../../../assets/Images/google.svg";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../../../data/auth/authAction";
 import "../Login/Login.scss";
 import { Link } from "react-router-dom";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 
 const Login = () => {
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState("");
+
+  const dispatch = useDispatch();
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.auth
+  );
+
+  const canSave = Boolean(emailInput) && Boolean(passwordInput);
+
+  const data = {
+    username: emailInput.toLowerCase(),
+    password: passwordInput,
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(userLogin(data));
+  };
   return (
     <>
       <Navbar />
@@ -28,10 +49,28 @@ const Login = () => {
           {/* <img src={bgc} alt={bgc} className="bgc" /> */}
           <div className="login-card">
             <h2>Sign In to HelloSite</h2>
-            <form action="">
+            <form onSubmit={handleSubmit}>
+              {error && (
+                <span className="error-msg">
+                  <FontAwesomeIcon icon={faWarning} color="red" />
+                  {error}
+                </span>
+              )}
               <div className="input">
-                <input type="email" placeholder="Email Address" />
-                <input type="password" placeholder="Password" />
+                <input
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  type="email"
+                  placeholder="Email Address"
+                />
+                <input
+                  value={passwordInput}
+                  onChange={(e) => {
+                    setPasswordInput(e.target.value);
+                  }}
+                  type="password"
+                  placeholder="Password"
+                />
               </div>
               <div className="rem-pass">
                 <div className="rem">
@@ -40,7 +79,9 @@ const Login = () => {
                 </div>
                 <span>Forgot Password?</span>
               </div>
-              <button>Sign In</button>
+              <button onClick={handleSubmit} disabled={!canSave} type="submit">
+                Sign In
+              </button>
             </form>
             <button>
               <img src={google} alt={google} />

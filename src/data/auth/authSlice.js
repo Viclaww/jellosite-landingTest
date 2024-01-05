@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "./authAction";
+import { registerUser, userLogin } from "./authAction";
+import Cookies from "js-cookie";
 
 // Retrieve data from local storage if available
 const storedAccessToken = localStorage.getItem("accessToken");
@@ -39,17 +40,45 @@ const authSlice = createSlice({
         state.accessToken = responseData.access || null; // Ensure a value or null
         state.userInfo = responseData.user || null; // Ensure a value or null
 
+        Cookies.set("jellosite-authToken", payload.access, { expires: 1 });
+
         // Save user information to local storage
         localStorage.setItem("accessToken", state.accessToken); // Ensure a value or empty string
         localStorage.setItem(
           "userInfo",
           JSON.stringify(state.userInfo || null)
         );
-
-        // You may want to reset success to false if needed
-        // state.success = false;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.userInfo = payload;
+        // Assuming payload is already a JSON object
+
+        const responseData = payload;
+
+        // Update state with the relevant data
+        state.accessToken = responseData.access || null; // Ensure a value or null
+        state.userInfo = responseData.user || null; // Ensure a value or null
+
+        // Save user information to local storage
+        console.log(payload.data.access);
+        Cookies.set("jellosite-authToken", payload.data.access, { expires: 1 });
+
+        localStorage.setItem("accessToken", state.accessToken); // Ensure a value or empty string
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(state.userInfo || null)
+        );
+      })
+      .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
