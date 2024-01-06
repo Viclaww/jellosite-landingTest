@@ -73,7 +73,7 @@ const authSlice = createSlice({
         state.userInfo = responseData.user || null; // Ensure a value or null
 
         // Save user information to local storage
-        console.log(payload.data.access);
+
         Cookies.set("jellosite-authToken", payload.data.access, { expires: 1 });
         Cookies.set(
           "jellosite-user",
@@ -82,9 +82,6 @@ const authSlice = createSlice({
             expires: 1,
           }
         );
-
-        localStorage.setItem("accessToken", state.accessToken); // Ensure a value or empty string
-        localStorage.setItem("userInfo", JSON.stringify(payload.data.user));
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
