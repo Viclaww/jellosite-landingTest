@@ -122,12 +122,40 @@
           flex-direction: column;
           gap: 20px;
           width: 100%;
+          .row-input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            input {
+              background-color: #fff;
+              border: 1px solid var(--gray-200, #e4e4e7);
+              background: var(--base-white, #fff);
+              width: 100%;
+              border-radius: 5px;
+            }
+            .p-gender {
+              width: 50%;
+              border-radius: 5px;
+            }
+            select {
+              background-color: #fff;
+              border: 1px solid var(--gray-200, #e4e4e7);
+              background: var(--base-white, #fff);
+              width: 100%;
+              border-radius: 5px;
+              height: 40px;
+              border-radius: 5px;
+            }
+          }
 
           input {
             background-color: #fff;
             border: 1px solid var(--gray-200, #e4e4e7);
             background: var(--base-white, #fff);
             width: 100%;
+            border-radius: 5px;
           }
         }
         .rem {

@@ -9,6 +9,7 @@ import "./reusableComps/font.scss";
 import "./reusableComps/design.scss";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ScrollToTop = () => {
   const location = useLocation();

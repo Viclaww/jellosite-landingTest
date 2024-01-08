@@ -5,7 +5,7 @@ const endpointURL = "http://testapi.jellosite.com";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
-  async ({ username, email, password1, password2 }, { rejectWithValue }) => {
+  async ({ username, email, password, phone, gender }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -14,7 +14,7 @@ export const registerUser = createAsyncThunk(
       };
       const response = await axios.post(
         `${endpointURL}/api/auth/register`,
-        { username, email, password1, password2 },
+        { username, email, password, phone, gender },
         config
       );
       return response.data;
