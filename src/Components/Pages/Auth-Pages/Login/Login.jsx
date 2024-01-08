@@ -80,7 +80,11 @@ const Login = () => {
                 <span>Forgot Password?</span>
               </div>
               <button onClick={handleSubmit} disabled={!canSave} type="submit">
-                Sign In
+                {loading ? (
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                ) : (
+                  "Sign In"
+                )}
               </button>
             </form>
             <button>

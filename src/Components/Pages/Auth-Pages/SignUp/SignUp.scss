@@ -64,7 +64,6 @@
       width: 100%;
     }
     .error-msg {
-      font-size: 14px;
       color: red;
       background: rgba(223, 113, 113, 0.5);
       padding: 10px;
@@ -149,6 +148,24 @@
               border-radius: 5px;
             }
           }
+          .password-input {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid var(--gray-200, #e4e4e7);
+            background: var(--base-white, #fff);
+            width: 100%;
+            border-radius: 5px;
+            padding-inline-end: 10px;
+            input {
+              background-color: #fff;
+              width: 100%;
+              border: none;
+            }
+          }
 
           input {
             background-color: #fff;
@@ -168,11 +185,11 @@
         }
         .password-strength-weak {
           color: red;
-          font-size: 10px;
+          margin-top: -10px;
         }
         .password-strength-strong {
           color: green;
-          font-size: 10px;
+          margin-top: -10px;
         }
 
         button {

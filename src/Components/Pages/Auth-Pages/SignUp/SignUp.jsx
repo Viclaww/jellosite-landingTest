@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../../../data/auth/authAction";
 import google from "../../../../assets/Images/google.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faWarning } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faEye,
+  faEyeSlash,
+  faSpinner,
+  faWarning,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../../../Layouts/Navbar/Navbar";
@@ -19,6 +25,15 @@ const SignUp = () => {
   const [passwordInput2, setPasswordInput2] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
+  const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
+
+  function handleShow() {
+    setShow(!show);
+  }
+  function handleShow1() {
+    setShow1(!show1);
+  }
 
   const dispatch = useDispatch();
   const { loading, userInfo, error, success } = useSelector(
@@ -27,7 +42,8 @@ const SignUp = () => {
 
   const canSave =
     Boolean(emailInput) &&
-    Boolean(nameInput) &&
+    Boolean(FirstNameInput) &&
+    Boolean(LastNameInput) &&
     Boolean(agreeToTerms) &&
     passwordStrength === "strong";
 
@@ -52,9 +68,10 @@ const SignUp = () => {
   };
 
   const data = {
-    username: nameInput,
+    username: phoneInput,
     email: emailInput.toLowerCase(),
     password1: passwordInput,
+    gender: genderInput,
     password2: passwordInput2,
     first_name: FirstNameInput,
     last_name: LastNameInput,
@@ -68,6 +85,7 @@ const SignUp = () => {
       toast.error("Passwords Do not match");
     }
   };
+
   return (
     <>
       <Navbar />
@@ -132,15 +150,21 @@ const SignUp = () => {
                   type="email"
                   placeholder="Email Address"
                 />
-                <input
-                  value={passwordInput}
-                  onChange={(e) => {
-                    setPasswordInput(e.target.value);
-                    checkPasswordStrength(e.target.value);
-                  }}
-                  type="password"
-                  placeholder="Create Password"
-                />
+                <div className="password-input">
+                  <input
+                    value={passwordInput}
+                    onChange={(e) => {
+                      setPasswordInput(e.target.value);
+                      checkPasswordStrength(e.target.value);
+                    }}
+                    type={show ? "text" : "password"}
+                    placeholder="Create Password"
+                  />
+                  <FontAwesomeIcon
+                    icon={show ? faEye : faEyeSlash}
+                    onClick={handleShow}
+                  />
+                </div>
                 {passwordInput && passwordStrength === "strong" && (
                   <span className="password-strength-strong">
                     Strong password!
@@ -151,6 +175,25 @@ const SignUp = () => {
                     Weak password. Please use at least 8 characters, including
                     uppercase, lowercase, and a number.
                   </span>
+                )}
+                <div className="password-input">
+                  <input
+                    value={passwordInput2}
+                    onChange={(e) => {
+                      setPasswordInput2(e.target.value);
+                    }}
+                    type={show1 ? "text" : "password"}
+                    placeholder="Confirm Password"
+                  />
+                  <FontAwesomeIcon
+                    icon={show1 ? faEye : faEyeSlash}
+                    onClick={handleShow1}
+                  />
+                </div>
+                {passwordInput2 && passwordInput !== passwordInput2 && (
+                  <p className="password-strength-weak">
+                    Passwords do not match!
+                  </p>
                 )}
               </div>
               <div className="rem">
@@ -173,7 +216,11 @@ const SignUp = () => {
                 type="submit"
                 onClick={handleSubmit}
               >
-                Sign Up
+                {loading ? (
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                ) : (
+                  "Sign Up"
+                )}
               </button>
               {error && (
                 <span className="error-msg">
