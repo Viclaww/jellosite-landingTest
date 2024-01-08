@@ -14,15 +14,42 @@ const SignUp = () => {
   const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState("");
 
   const dispatch = useDispatch();
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
 
+  const canSave =
+    Boolean(emailInput) &&
+    Boolean(nameInput) &&
+    Boolean(agreeToTerms) &&
+    passwordStrength === "strong";
+
+  const checkPasswordStrength = (password) => {
+    // Define your password strength criteria
+    const minLength = 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+
+    // Check the criteria
+    if (
+      password.length >= minLength &&
+      hasUppercase &&
+      hasLowercase &&
+      hasNumber
+    ) {
+      setPasswordStrength("strong");
+    } else {
+      setPasswordStrength("weak");
+    }
+  };
+
   const data = {
     username: nameInput,
-    email: emailInput,
+    email: emailInput.toLowerCase(),
     password1: passwordInput,
     password2: passwordInput,
   };
@@ -51,13 +78,6 @@ const SignUp = () => {
           <div className="signup-card">
             <h2>Sign Up to HelloSite</h2>
             <form onSubmit={handleSubmit}>
-              {error && (
-                <span className="error-msg">
-                  <FontAwesomeIcon icon={faWarning} color="red" />
-                  {"  "}
-                  {error}
-                </span>
-              )}
               <div className="input">
                 <input
                   value={nameInput}
@@ -73,10 +93,24 @@ const SignUp = () => {
                 />
                 <input
                   value={passwordInput}
-                  onChange={(e) => setPasswordInput(e.target.value)}
+                  onChange={(e) => {
+                    setPasswordInput(e.target.value);
+                    checkPasswordStrength(e.target.value);
+                  }}
                   type="password"
                   placeholder="Create Password"
                 />
+                {passwordInput && passwordStrength === "strong" && (
+                  <span className="password-strength-strong">
+                    Strong password!
+                  </span>
+                )}
+                {passwordInput && passwordStrength === "weak" && (
+                  <span className="password-strength-weak">
+                    Weak password. Please use at least 8 characters, including
+                    uppercase, lowercase, and a number.
+                  </span>
+                )}
               </div>
               <div className="rem">
                 <input
@@ -92,9 +126,20 @@ const SignUp = () => {
                   of Hellosite
                 </span>
               </div>
-              <button type="submit" onClick={handleSubmit}>
+              <button
+                disabled={!canSave}
+                className="disabled:bg-red-800 p-24"
+                type="submit"
+                onClick={handleSubmit}
+              >
                 Sign Up
               </button>
+              {error && (
+                <span className="error-msg">
+                  <FontAwesomeIcon icon={faWarning} color="red" />
+                  {error}
+                </span>
+              )}
             </form>
             <button>
               <img src={google} alt={google} />
