@@ -10,6 +10,7 @@ import "./reusableComps/design.scss";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Onboard from "./Components/Pages/onboarding/onboard";
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route index element={<LandingPage />} />
+        <Route path="/onboarding" element={<Onboard />} />
         <Route path="/auth-login" element={<Login />} />
         <Route path="/auth-signup" element={<SignUp />} />
       </Routes>
