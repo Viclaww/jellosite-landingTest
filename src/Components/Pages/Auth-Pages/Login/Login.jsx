@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../../../data/auth/authAction";
 import "../Login/Login.scss";
 import { Link } from "react-router-dom";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 
 const Login = () => {

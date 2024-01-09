@@ -41,7 +41,7 @@ const authSlice = createSlice({
         state.userInfo = responseData.user || null; // Ensure a value or null
 
         Cookies.set("jellosite-user", JSON.stringify(state.userInfo || null), {
-          expires: 1,
+          expires: 100,
         });
         Cookies.set("jellosite-authToken", payload.data.access, { expires: 1 });
 
@@ -76,9 +76,9 @@ const authSlice = createSlice({
         Cookies.set("jellosite-authToken", payload.data.access, { expires: 1 });
         Cookies.set(
           "jellosite-user",
-          JSON.stringify(<payload className="data user"> </payload> || null),
+          JSON.stringify(payload.data.user || null),
           {
-            expires: 1,
+            expires: 100,
           }
         );
       })
