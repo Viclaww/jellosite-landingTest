@@ -40,18 +40,17 @@ const authSlice = createSlice({
         state.accessToken = responseData.access || null; // Ensure a value or null
         state.userInfo = responseData.user || null; // Ensure a value or null
 
-        Cookies.set(
-          "jellosite-authToken",
-          JSON.stringify(state.userInfo || null),
-          { expires: 1 }
-        );
+        Cookies.set("jellosite-user", JSON.stringify(state.userInfo || null), {
+          expires: 1,
+        });
+        Cookies.set("jellosite-authToken", payload.data.access, { expires: 1 });
 
-        // Save user information to local storage
-        localStorage.setItem("accessToken", state.accessToken); // Ensure a value or empty string
-        localStorage.setItem(
-          "userInfo",
-          JSON.stringify(state.userInfo || null)
-        );
+        // // Save user information to local storage
+        // localStorage.setItem("accessToken", state.accessToken); // Ensure a value or empty string
+        // localStorage.setItem(
+        //   "userInfo",
+        //   JSON.stringify(state.userInfo || null)
+        // );
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.loading = false;

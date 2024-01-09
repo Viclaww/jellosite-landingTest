@@ -5,10 +5,7 @@ const endpointURL = "http://testapi.jellosite.com";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
-  async (
-    { username, email, password1, password2, first_name, last_name, gender },
-    { rejectWithValue }
-  ) => {
+  async ({ username, email, password1, password2 }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -16,16 +13,8 @@ export const registerUser = createAsyncThunk(
         },
       };
       const response = await axios.post(
-        `${endpointURL}/api/auth/register`,
-        {
-          username,
-          email,
-          password1,
-          password2,
-          first_name,
-          last_name,
-          gender,
-        },
+        `${endpointURL}/api /auth/register`,
+        { username, email, password1, password2 },
         config
       );
       return response.data;
@@ -51,7 +40,7 @@ export const userLogin = createAsyncThunk(
         },
       };
       const response = await axios.post(
-        `${endpointURL}/api/auth/login/`,
+        `${endpointURL}/api/auth/login/ `,
         { username, password },
         config
       );
