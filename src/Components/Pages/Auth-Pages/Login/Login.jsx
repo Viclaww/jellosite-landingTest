@@ -1,11 +1,12 @@
 import { faCheckCircle, faWarning } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import google from "../../../../assets/Images/google.svg";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../../../data/auth/authAction";
 import "../Login/Login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 
@@ -13,6 +14,7 @@ const Login = () => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordStrength, setPasswordStrength] = useState("");
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { loading, userInfo, error, success } = useSelector(
@@ -20,6 +22,13 @@ const Login = () => {
   );
 
   const canSave = Boolean(emailInput) && Boolean(passwordInput);
+  const user = useSelector((state) => state.auth.userInfo);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/onboarding");
+    }
+  });
 
   const data = {
     username: emailInput.toLowerCase(),

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../../Layouts/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { setName } from "../../../data/site/siteSetupSlice";
+import { setType, setSlugAndName } from "../../../data/site/siteSetupSlice";
 import { IoMdArrowBack } from "react-icons/io";
 import "./onboard.scss";
 
@@ -11,17 +11,22 @@ import Schoolnormal from "../../../assets/Icons/mdi_school-outline.svg";
 import schoolHover from "../../../assets/Icons/hover mdi_school-outline (1).svg";
 import dispatchnormal from "../../../assets/Icons/shipping truck.svg";
 import dispatchhover from "../../../assets/Icons/hover_Transport.svg";
+import { useCreateNewSiteMutation } from "../../../data/api/createSiteApi";
 
 const Onboard = () => {
   const [hoveredSection, setHoveredSection] = useState(null);
   const [showSection2, setShowSection2] = useState(false);
+  const [storName, setStoreName] = useState("");
+  const [slug, setSlug] = useState("");
   const dispatch = useDispatch();
-  const checkName = useSelector((state) => state.siteSetup.name);
+  const [checkType, setCheckType] = useState("");
 
-  const isDesiredName =
-    checkName === "ecommerce" ||
-    checkName === "school" ||
-    checkName === "dispatchServices";
+  const access = useSelector((state) => state.auth.accessToken);
+  const [createNewSite, { isLoading, isError }] = useCreateNewSiteMutation();
+  const isDesiredType =
+    checkType === "ecommerce" ||
+    checkType === "school" ||
+    checkType === "dispatchServices";
 
   const handleSectionHover = (sectionIndex) => {
     setHoveredSection(sectionIndex);
@@ -32,25 +37,39 @@ const Onboard = () => {
   };
 
   const handleGoBackClick = () => {
-    dispatch(setName(""));
+    setCheckType("");
     setShowSection2(false);
   };
 
   const handleSectionClick = (name) => {
-    dispatch(setName(name));
+    setCheckType(name);
     setShowSection2(true);
+  };
+
+  // Assuming `access` is a valid token
+
+  const handleCreateSite = (e) => {
+    e.preventDefault();
+    console.log(access);
+    const data = {
+      name: storName,
+      slug,
+      site_type: checkType,
+    };
+
+    dispatch(createNewSite({ body: data, access }));
   };
 
   return (
     <>
       <Navbar />
-      <div className="w-full flex flex-col gap-10 h-full relative overflow-hidden">
+      <div className="w-full flex flex-col  h-full relative overflow-hidden">
         <div
-          className={`flex section-1 flex-col justify-center duration-200 gap-6 ${
-            isDesiredName ? "-translate-x-full absolute" : ""
+          className={`flex section-1 flex-col p-4 pb-5 justify-center duration-200 gap-6 ${
+            isDesiredType ? "-translate-x-full z-10 absolute" : ""
           }`}
         >
-          <h1 className="text-3xl text-center font-medium">
+          <h1 className="md:text-3xl text-lg text-center font-medium">
             Hi John👋🏻 <br /> What kind of business website do you want to
             create?
           </h1>
@@ -75,7 +94,7 @@ const Onboard = () => {
                       ? [storehover, schoolHover, dispatchhover][index]
                       : img
                   }
-                  alt="me"
+                  alt="service"
                 />
                 {["Regular Store", "School", "Dispatch Service"][index]}
               </div>
@@ -88,7 +107,7 @@ const Onboard = () => {
             showSection2 ? "translate-x-0" : "translate-x-full absolute"
           }`}
         >
-          <form className="flex rounded flex-col gap-5 shadow-custom p-8 md w-1/3">
+          <form className="flex rounded flex-col gap-5 lg:shadow-custom p-8 w-full md:w-1/2  lg:w-1/3">
             <p
               onClick={handleGoBackClick}
               className="text-xs flex gap-1 items-center cursor-pointer"
@@ -100,7 +119,10 @@ const Onboard = () => {
               <input
                 className="w-full h-[56px] rounded py-3 px-1 outline outline-[1px] outline-[#E4E4E7]"
                 type="text"
+                required
                 placeholder="Store Name"
+                value={storName}
+                onChange={(e) => setStoreName(e.target.value)}
               />
             </span>
 
@@ -109,6 +131,9 @@ const Onboard = () => {
                 className="w-full h-[56px] rounded py-3 px-1 outline outline-[1px] outline-[#E4E4E7]"
                 type="text"
                 placeholder="Store-site"
+                required={true}
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
               />
               <p className="text-sm absolute right-3 font-medium top-5">
                 .jellosite.com
@@ -118,6 +143,7 @@ const Onboard = () => {
             <button
               className="rounded-lg h-[56px] py-3 text-white bg-[#7E57C2]"
               type="text"
+              onClick={handleCreateSite}
             >
               Create Store
             </button>

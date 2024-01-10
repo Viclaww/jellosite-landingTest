@@ -1,6 +1,6 @@
 import "./App.css";
 import LandingPage from "./Components/Pages/LandingPage/LandingPage";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Login from "./Components/Pages/Auth-Pages/Login/Login";
 import "./reusableComps/design.scss";
 import "./reusableComps/font.scss";
@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Onboard from "./Components/Pages/onboarding/onboard";
+import { useSelector } from "react-redux";
 
 const ScrollToTop = () => {
   const location = useLocation();

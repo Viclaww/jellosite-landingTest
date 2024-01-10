@@ -13,7 +13,7 @@ const storedUserInfo = storedUserInfoString
 const initialState = {
   loading: false,
   userInfo: storedUserInfo,
-  accessToken: storedAccessToken || null,
+  accessToken: null,
   error: null,
   success: false,
 };
@@ -37,7 +37,7 @@ const authSlice = createSlice({
         const responseData = payload;
 
         // Update state with the relevant data
-        state.accessToken = responseData.access || null; // Ensure a value or null
+        state.accessToken = payload.access || null; // Ensure a value or null
         state.userInfo = responseData.user || null; // Ensure a value or null
 
         Cookies.set("jellosite-user", JSON.stringify(state.userInfo || null), {
@@ -68,8 +68,8 @@ const authSlice = createSlice({
         const responseData = payload;
 
         // Update state with the relevant data
-        state.accessToken = responseData.access || null; // Ensure a value or null
-        state.userInfo = responseData.user || null; // Ensure a value or null
+        state.accessToken = responseData.data.access || null; // Ensure a value or null
+        state.userInfo = responseData.data.user || null; // Ensure a value or null
 
         // Save user information to local storage
 

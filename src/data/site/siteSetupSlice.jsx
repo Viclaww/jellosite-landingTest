@@ -10,15 +10,15 @@ const siteSetupSlice = createSlice({
   name: "storesetup",
   initialState,
   reducers: {
-    setName(state, action) {
-      state.name = action.payload;
+    setType(state, action) {
+      state.site_type = action.payload;
     },
-    setSlugAndType(state, action) {
+    setSlugAndName(state, action) {
       state.slug = action.payload.slug;
-      state.site_type = action.payload.siteType;
+      state.name = action.payload.name;
     },
   },
 });
 
-export const { setName, setSlugAndType } = siteSetupSlice.actions;
+export const { setType, setSlugAndName } = siteSetupSlice.actions;
 export default siteSetupSlice.reducer;
