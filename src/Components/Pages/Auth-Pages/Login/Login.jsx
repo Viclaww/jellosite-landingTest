@@ -16,9 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { loading, userInfo, error, success } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, error } = useSelector((state) => state.auth);
   // const [login, { isLoading, isError }] = useLoginMutation();
   const canSave = Boolean(emailInput) && Boolean(passwordInput);
   const user = useSelector((state) => state.auth.userInfo);
@@ -62,7 +60,7 @@ const Login = () => {
               {error && (
                 <span className="error-msg">
                   <FontAwesomeIcon icon={faWarning} color="red" />
-                  {isError}
+                  {error}
                 </span>
               )}
               <div className="input">
