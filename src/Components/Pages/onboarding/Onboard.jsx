@@ -3,8 +3,6 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 // import { setType, setSlugAndName } from "../../../data/site/siteSetupSlice";
 import { IoMdArrowBack } from "react-icons/io";
-import "./_onboard.scss";
-
 import storenormal from "../../../assets/Icons/clarity_store-solid (2).svg";
 import storehover from "../../../assets/Icons/hover_clarity_store-solid (1).svg";
 import Schoolnormal from "../../../assets/Icons/mdi_school-outline.svg";

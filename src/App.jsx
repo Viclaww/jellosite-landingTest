@@ -10,7 +10,7 @@ import "./reusableComps/design.scss";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Onboard from "./Components/Pages/onboarding/onboard";
+import Onboard from "./Components/Pages/onboarding/Onboard";
 
 const ScrollToTop = () => {
   const location = useLocation();
