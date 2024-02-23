@@ -13,7 +13,7 @@ export const registerUser = createAsyncThunk(
         },
       };
       const response = await axios.post(
-        `${endpointURL}/api /auth/register`,
+        `${endpointURL}/api/auth/register`,
         { username, email, password1, password2 },
         config
       );

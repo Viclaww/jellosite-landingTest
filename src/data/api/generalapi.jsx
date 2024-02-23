@@ -6,5 +6,7 @@ const baseQuery = fetchBaseQuery({
 
 export const generalApiSlice = createApi({
   baseQuery,
-  endpoints: (build) => ({}),
+  endpoints: (builder) => ({}),
 });
+
+export const { useLoginMutation } = generalApiSlice;

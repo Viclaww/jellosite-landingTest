@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, userLogin } from "./authAction";
 import Cookies from "js-cookie";
+import { generalApiSlice } from "../api/generalapi";
+// import { authApiSlice } from "./authApi";
 
 // Retrieve data from local storage if available
 const storedAccessToken = localStorage.getItem("accessToken");

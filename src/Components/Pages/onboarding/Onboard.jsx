@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "../../Layouts/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { setType, setSlugAndName } from "../../../data/site/siteSetupSlice";
+// import { setType, setSlugAndName } from "../../../data/site/siteSetupSlice";
 import { IoMdArrowBack } from "react-icons/io";
 import "./onboard.scss";
 
@@ -22,7 +22,7 @@ const Onboard = () => {
   const [checkType, setCheckType] = useState("");
 
   const access = useSelector((state) => state.auth.accessToken);
-  const [createNewSite, { isLoading, isError }] = useCreateNewSiteMutation();
+  const [createNewSite] = useCreateNewSiteMutation();
   const isDesiredType =
     checkType === "ecommerce" ||
     checkType === "school" ||

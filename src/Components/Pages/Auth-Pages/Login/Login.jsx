@@ -3,32 +3,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import google from "../../../../assets/Images/google.svg";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "../../../../data/auth/authAction";
 import "../Login/Login.scss";
 import { Link, useNavigate } from "react-router-dom";
-
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../../../Layouts/Navbar/Navbar";
+import { useLoginMutation } from "../../../../data/api/generalapi";
+import { userLogin } from "../../../../data/auth/authAction";
 
 const Login = () => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [passwordStrength, setPasswordStrength] = useState("");
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
-
+  // const [login, { isLoading, isError }] = useLoginMutation();
   const canSave = Boolean(emailInput) && Boolean(passwordInput);
   const user = useSelector((state) => state.auth.userInfo);
 
   useEffect(() => {
     if (user) {
-      navigate("/onboarding");
+      navigate("/onboarding"); // sends user to CREATE SITE PAGE
     }
-  });
+  }, [user, navigate]);
 
   const data = {
     username: emailInput.toLowerCase(),
@@ -63,7 +62,7 @@ const Login = () => {
               {error && (
                 <span className="error-msg">
                   <FontAwesomeIcon icon={faWarning} color="red" />
-                  {error}
+                  {isError}
                 </span>
               )}
               <div className="input">

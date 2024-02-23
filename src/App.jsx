@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Onboard from "./Components/Pages/onboarding/onboard";
-import { useSelector } from "react-redux";
 
 const ScrollToTop = () => {
   const location = useLocation();
